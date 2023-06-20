@@ -4,17 +4,23 @@ import './Employee.css'
 const Employee = (props) => {
     const {name, gender, email, phone, picture} = props.worker
 
+    function getFullName(name){
+        return `${name.title} ${name.first} ${name.last}`
+    }
+
     return (
         <div className='employee'>
             <div>
                 <img src={picture.large} alt="worker" />
             </div>
             <div>
-                <p><strong>Name: {`${name.title} ${name.first} ${name.last}`}</strong></p>
+                <p><strong>Name: {getFullName(name)}</strong></p>
                 <p>Gender: {gender}</p>
                 <p>Email: {email}</p>
                 <p>Phone: {phone}</p>
-                <button>Add me</button>
+                <button onClick={() => {
+                    props.addWorker(props.worker)
+                }}>Add me</button>
             </div>
         </div>
     )
