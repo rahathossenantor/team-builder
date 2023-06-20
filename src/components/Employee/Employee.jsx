@@ -1,5 +1,5 @@
-import React from 'react'
-import './Employee.css'
+import React, { useState } from "react"
+import "./Employee.css"
 
 const Employee = (props) => {
     const {name, gender, email, phone, picture} = props.worker
@@ -8,8 +8,14 @@ const Employee = (props) => {
         return `${name.title} ${name.first} ${name.last}`
     }
 
+    const [mobile, setMobile] = useState("")
+
+    function displayNumber(){
+        setMobile(phone)
+    }
+
     return (
-        <div className='employee'>
+        <div className="employee">
             <div>
                 <img src={picture.large} alt="worker" />
             </div>
@@ -17,10 +23,9 @@ const Employee = (props) => {
                 <p><strong>Name: {getFullName(name)}</strong></p>
                 <p>Gender: {gender}</p>
                 <p>Email: {email}</p>
-                <p>Phone: {phone}</p>
-                <button onClick={() => {
-                    props.addWorker(props.worker)
-                }}>Add me</button>
+                <p>Phone: {mobile}</p>
+                <button onClick={displayNumber}>See phone number</button> &nbsp;
+                <button onClick={() => {props.addWorker(props.worker)}}>Add me</button>
             </div>
         </div>
     )
